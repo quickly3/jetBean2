@@ -1,8 +1,10 @@
-mkdir storage
+git clone https://github.com/quickly3/jetBean2.git
+
+composer install
 
 sudo php artisan key:generate
-* sudo chmod -R 777 ./storage  (web 服务器需要拥有 storage 目录下的所有目录和 bootstrap/cache 目录的写权限。)
-* sudo chmod 777 ./bootstrap/cache
+
+mkdir storage
 
 cd storage
 
@@ -18,6 +20,9 @@ mkdir sessions
 mkdir views
 mkdir cache
 
+
+* sudo chmod -R 777 ./storage  (web 服务器需要拥有 storage 目录下的所有目录和 bootstrap/cache 目录的写权限。)
+* sudo chmod 777 ./bootstrap/cache
 
 sql:
 create database jetbean;
