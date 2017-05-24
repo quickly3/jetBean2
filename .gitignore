@@ -10,3 +10,7 @@ Homestead.yaml
 npm-debug.log
 .env
 storage/
+
+public/upload/blog/1495647127_59.jpg
+
+*.jpg
