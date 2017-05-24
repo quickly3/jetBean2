@@ -28,7 +28,9 @@ mkdir framework
 cd framework
 
 mkdir sessions
+
 mkdir views
+
 mkdir cache
 
 #### 目录授权
