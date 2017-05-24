@@ -1,0 +1,43 @@
+.random-blog-item{cursor: pointer;}
+
+
+.bt pre{ 
+	white-space: pre;
+ }
+.bt p,.bt ul,.bt li,.bt pre,.bt h4,.bt span
+{
+	font-size: 14px;
+    line-height: 170%;
+}
+
+.cate_cnt{
+	float: right;
+    position: absolute;
+    right: 9%;
+    color:#0AA;
+}
+
+.blog_header span,.blog_header a{
+	font-size:12px;
+}
+.blog_cnt{
+	font-size: 14px;
+	position: relative;
+    left: 68%;
+}
+
+.syntaxhighlighter .container{
+	margin: 1px 0 !important;
+}
+.syntaxhighlighter .toolbar{
+	display: none;
+}
+
+.view-cnt{
+	color: #a6a6a6;
+    font-size: 14px;
+    padding-left: 5px;
+}
+.main-content{
+	min-height: 600px;
+}
