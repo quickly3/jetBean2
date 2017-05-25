@@ -14,3 +14,4 @@ storage/
 public/upload/blog/1495647127_59.jpg
 
 *.jpg
+public/node_modules/
