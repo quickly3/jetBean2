@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
                 'name'      => 'admin_jetbean',
                 'email'     => 'notauth@gmail.com',
-                'password'  		=> md5('admin_jetbean'),
+                'password'  => bcrypt('admin_jetbean'),
                 'image'     => 'minion3.jpg'
             ]);
     }

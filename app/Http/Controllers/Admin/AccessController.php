@@ -62,7 +62,7 @@ class AccessController extends Controller {
             $user_m = Model("User");
 
             $data["name"] = trim(Request::input("user"));
-            $data["password"]  = trim(md5(Request::input("password")));
+            $data["password"]  = bcrypt(trim(md5(Request::input("password"))));
 
             if($user_info = $user_m->userInfo(['name' => $data['name'] ])){
                 $rsCode = -1001;
