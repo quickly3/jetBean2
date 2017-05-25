@@ -57,3 +57,7 @@ cp .env.example .env
 ID：admin_jetbean
 
 pwd:admin_jetbean
+
+
+启用权限验证
+php artisan make:auth

@@ -7,44 +7,32 @@ use Session;
 use Redirect;
 use Log;
 use App\Services\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class AccessController extends Controller {
 
     public function signin(){
-        $user_m = Model("User");
 
-        $data["name"] = trim(Request::input("name"));
-        $data["pwd"]  = trim(md5(Request::input("pwd")));
+        $name = trim(Request::input("name"));
+        $password  = trim(Request::input("pwd"));
 
-        if(!$data["name"] || !$data["pwd"]){
-            return $this->send(-1002,"","/");
-        }
-
-        $ret = $user_m->userInfo($data);
-
-        sleep(1);
-        if($ret){
-            $user_info = $ret->toArray();
-            Session::forget("user_info");
-            Session::put(compact("user_info"));
-            Session::save();
-            return $this->send(1002,$user_info,"/");
+        if (Auth::attempt(['name' => $name, 'password' => $password])) {
+            return $this->send(1002,"","/");
         }else{
-            return $this->send(-1002);
-        }
-    
+            return $this->send(-1002,"","/");
+        }    
     }
 
     public function auth(){
 
         $msgCode = Session::has("user_info")?1003:-1003;
-
         $user_info = Session::get("user_info");
         return $this->send($msgCode,$user_info);
     }
 
     public function signout(){
-        Session::forget("user_info");
+        Auth::logout();
         abort(302,"退出登录",["Location"=>"/Adm"]);
     }
     /**
@@ -54,8 +42,7 @@ class AccessController extends Controller {
      */
     public function login()
     {
-
-        if(User::isLogin()){
+        if(Auth::check()){
             abort(302,"已经登录",["Location"=>"/Admin/Index/index"]);
         }
         $res = compact("user_list","title","page");
@@ -75,8 +62,7 @@ class AccessController extends Controller {
             $user_m = Model("User");
 
             $data["name"] = trim(Request::input("user"));
-            $data["pwd"]  = trim(md5(Request::input("pwd")));
-
+            $data["password"]  = trim(md5(Request::input("password")));
 
             if($user_info = $user_m->userInfo(['name' => $data['name'] ])){
                 $rsCode = -1001;

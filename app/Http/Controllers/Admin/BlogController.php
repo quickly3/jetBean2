@@ -5,7 +5,7 @@ use App\Services\User;
 use \App\Services\Upload;
 use Request;
 use Validator;
-
+use Auth;
 
 class BlogController extends Controller{
 
@@ -46,7 +46,7 @@ class BlogController extends Controller{
 		$data['thumbnailUrl'] = "";
 		$data['thumbnailUrl'] = '';
 		$data['main_img'] = 0;
-		$data['user_id'] = User::userInfo()['id'];
+		$data['user_id'] = Auth::getUser()->id;
 
 		$img_id = Request::input("cate_img");
 		

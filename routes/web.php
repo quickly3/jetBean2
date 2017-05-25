@@ -16,3 +16,6 @@ use App\Services\Routes as RoutesManager;
 
 $routesManager = new RoutesManager();
 $routesManager->mobile()->www();
+// Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

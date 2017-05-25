@@ -6,9 +6,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use App\Http\Controllers\Controller as BaseController;
 // use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Services\Msg;
-use App\Services\User;
 use Config;
-use Session;
+use Auth;
 
 abstract class Controller extends BaseController
 {
@@ -23,7 +22,7 @@ abstract class Controller extends BaseController
         $_arr = explode("\\",get_class($this));
         $class = strtolower(substr(array_pop($_arr),0,-10));
 
-        if( !User::isLogin() && $class != "access"){
+        if( !Auth::check() && $class != "access"){
             abort(302,"重定向到登录页面",["Location"=>"/Admin/Access/login"]);
         }
     }
