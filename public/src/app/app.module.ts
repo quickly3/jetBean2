@@ -3,7 +3,8 @@ import { BrowserModule }  from '@angular/platform-browser';
 
 
 import { App } from './app.component';
-import { routing } from './routes/app.routing';
+import { routing } from './app.routing';
+import { AppMenu } from './layouts/app-menu.component';
 
 // import { ModalModule } from 'ngx-bootstrap/modal';
 
@@ -15,7 +16,8 @@ import { routing } from './routes/app.routing';
     routing
   ],
   declarations: [
-    App
+    App,
+    AppMenu
   ],
 
 })
