@@ -1,5 +1,5 @@
 *               { font-family: 'Open Sans',Arial,sans-serif;}
-body            { background: #161719; visibility: hidden }
+body            { background: #161719;}
 b               {font-weight: bold}
 .margin-tb-20   {margin-top: 20px; margin-bottom: 20px}
 .margin-tb-10   {margin-top: 10px; margin-bottom: 10px}
@@ -1995,7 +1995,6 @@ nav{
         bottom: 20px;
         width: 48px;
         height: 48px;
-        background: url(img/back-to-top.png) 0 0 no-repeat;
         z-index: 99999999;
         -webkit-transition: background-position .2s ease-in-out;
         -moz-transition:  background-position .2s ease-in-out;

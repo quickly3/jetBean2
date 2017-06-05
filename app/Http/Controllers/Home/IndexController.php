@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Home;
 
 use \App\Http\Controllers\Controller;
 use Request;
+use View;
 
 class IndexController extends Controller{
 
     public function index($id = 0){
 
-        $title = "CoG|Blogs";
+        // $title = "CoG|Blogs";
 
 //        $blog_m   = Model("Blog");
 //
@@ -29,7 +30,10 @@ class IndexController extends Controller{
 //        $perPage = 10;
 //        $blog_m   = Model("Blog");
 //        $blogList = $blog_m->indexBlogs($perPage);
-
-        return View("home.index.index");
+    	
+    	
+    	View::addExtension('html', 'php');
+    	return View('index');
+        // return View("home.index.index");
     }
 }

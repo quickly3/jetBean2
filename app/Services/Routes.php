@@ -53,7 +53,7 @@ class Routes
     {
 
         Route::get('/', function(){
-            $class = 'App\\Http\\Controllers\\Home\\BlogController';
+            $class = 'App\\Http\\Controllers\\Home\\IndexController';
             $classObject = new $class();
             return $classObject->index();
         });

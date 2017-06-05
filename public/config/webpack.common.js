@@ -41,7 +41,7 @@ module.exports = {
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
-        loader: 'raw-loader'
+        loaders: ['raw-loader','css-loader']
       },
       {
         test: /\.scss$/,
