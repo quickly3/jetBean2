@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
-
-
-import { App } from './app.component';
+import { App }     from './app.component';
 import { routing } from './app.routing';
 import { AppMenu } from './layouts/app-menu.component';
+import { BlogModule } from './blog/blog.module';
 
 // import { ModalModule } from 'ngx-bootstrap/modal';
 
@@ -13,7 +12,8 @@ import { AppMenu } from './layouts/app-menu.component';
   bootstrap: [App],
   imports: [
     BrowserModule,
-    routing
+    BlogModule,
+    routing,
   ],
   declarations: [
     App,
