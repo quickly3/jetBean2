@@ -1,11 +1,11 @@
-<div class="row">
+<div class="row"  >
 
     <div class="nine columns blog_header">
 
         <h1>Blog</h1>
-        @if($curr_cate)<span>当前分类：(($curr_cate->name))</span>@endif
-        @if($curr_tag)<span>当前标签：(($curr_tag->name))</span>@endif
-        <a class="color" href="/blog.html">全部</a>
+        <span *ngIf="curr_cate ">当前分类：{{curr_cate.name}}</span>
+        <span *ngIf="curr_tag">当前标签：{{curr_tag.name}}</span>
+        <a class="color" href="/html">全部</a>
         <a class="color" target="__BLANK" href="/Home/Blog/statistics">博客统计</a>
     </div>
 
@@ -17,29 +17,24 @@
 
 </div><!-- Site Heading Title ENDS -->
 
-<div class="row">
+<div class="row"  >
 
     <div class="main-content three columns blog-list">
-        @foreach($blogList as $i)
-        <div class="random-blog-item blog-list-item">
-            <img src="(($i->img))" alt="random blog post" class="random-blog-img">
-            @if($curr_cate)
-            <a href="/blog.html?id=(($i->id))&cate=(($curr_cate->id))" title="random blog post" class="random-blog-title">(($i->title))</a>
-            @elseif($curr_tag)
-            <a href="/blog.html?id=(($i->id))&tag=(($curr_tag->id))" title="random blog post" class="random-blog-title">(($i->title))</a>
-            @else
-            <a href="/blog.html?id=(($i->id))" title="random blog post" class="random-blog-title">(($i->title))</a>
-            @endif
+        <div class="random-blog-item blog-list-item" *ngFor="let item of blogList?.data">
+            <img src="{{item.img}}" alt="random blog post" class="random-blog-img">
+            <a *ngIf="curr_cate" href="/html?id={{item.id}}&cate={{curr_cate.id}}" title="random blog post" class="random-blog-title">{{item.title}}</a>
+            <a *ngIf="curr_tag" href="/html?id={{item.id}}&tag={{curr_tag.id}}" title="random blog post" class="random-blog-title">{{item.title}}</a>
+            <a *ngIf="!curr_tag && !curr_tag" href="/html?id={{item.id}}" title="random blog post" class="random-blog-title">{{item.title}}</a>
 
-            <div class="random-blog-descr">(($i->summary))</div>
+            <div class="random-blog-descr">{{item.summary}}</div>
             <div class="random-blog-item-bg background-color"></div>
         </div>
-        @endforeach
 
 
         <div class="blog-paging" data-curr="(($blogList->currentPage()))"
                                  data-total="(($blogList->total()))"
                                  data-perPage="(($blogList->perPage ()))">
+
             <a class="background-color" href="#">First</a>
             <a class="background-color" href="#">...</a>
 
@@ -53,47 +48,42 @@
 
     </div>
 
-    <div class="six columns">
+    <div class="six columns"  *ngIf="blogInfo">
 
         <div class="background-color blog-post-title">
 
-            <a href="blog.html" class="blog-post-link">(($blogInfo->title))</a>
+            <a href="html" class="blog-post-link">{{blogInfo.title}}</a>
 
             <div class="team-member-icons connection-w deactive"></div>
 
-            <div class="blog-post-date">(( $blogInfo->created_at ))</div>
+            <div class="blog-post-date">{{blogInfo.created_at}}</div>
 
         </div>
 
-        <div class="post-img-zone" title="(($blogInfo->title))">
-            <img src="(($blogInfo->img))" alt="blog post img" class="blog-post-img"/>
+        <div class="post-img-zone" title="{{blogInfo.title}}">
+            <img src="{{blogInfo.img}}" alt="blog post img" class="blog-post-img"/>
         </div>
         <div>
             <div class="view-cnt">
-                <span><i class="fa fa-eye"></i> (($blogInfo->view))</span> 
+                <span><i class="fa fa-eye"></i>{{blogInfo.view}}</span> 
             </div>
-            <h4>(($blogInfo->summary))</h4><br><br>
+            <h4>{{blogInfo.summary}}</h4><br><br>
         </div>
         
-        <div class="bt">
-            (!! $blogInfo->content !!)
+        <div class="bt" [innerHtml]="blogInfo.content">
         </div>
     </div>
 
     <div class="three columns">
 
-        <div class="title grid">Categories <span class="blog_cnt">博客总数:(($blogCnt))</span></div>
+        <div class="title grid">Categories <span class="blog_cnt">博客总数:{{blogCnt}}</span></div>
 
-        <ul class="blog-categories">
-            @foreach($categories as $i)
+        <ul class="blog-categories" *ngFor="let item of categories">
             <li>
                 <div class="blog-cat-anim background-color"></div>
-                <a href="blog.html?cate=(($i->id))" title="blog category">(($i->name))<span class="cate_cnt">((($i->cnt)))</span></a>
+                <a href="html?cate={{item.id}}" title="blog category">{{item.name))<span class="cate_cnt">({{item.cnt}})</span></a>
                 
             </li>
-                
-            
-            @endforeach
         </ul>
 
         <div class="blog-posts-tab">
@@ -105,28 +95,24 @@
 
             </div>
 
-            <div class="popular-blogs">
-                @foreach($popular as $i)
+            <div class="popular-blogs" *ngFor="let item of popular" >
                 <div class="random-blog-item">
-                    <img src="(($i->img))" alt="random blog post" class="random-blog-img">
-                    <a href="/blog.html?id=(($i->id))" title="random blog post" class="random-blog-title">(($i->title))</a>
+                    <img src="{{item.img}}" alt="random blog post" class="random-blog-img">
+                    <a href="/html?id={{item.id}}" title="random blog post" class="random-blog-title">{{item.title}}</a>
 
-                    <div class="random-blog-descr">(($i->summary))</div>
+                    <div class="random-blog-descr">{{item.summary}}</div>
                     <div class="random-blog-item-bg background-color"></div>
                 </div>
-                @endforeach
             </div>
 
-            <div class="recent-blogs">
-                @foreach($recent as $i)
+            <div class="recent-blogs" *ngFor="let item of recent">
                 <div class="random-blog-item">
-                    <img src="(($i->img))" alt="random blog post" class="random-blog-img">
-                    <a href="/blog.html?id=(($i->id))" title="random blog post" class="random-blog-title">(($i->title))</a>
+                    <img src="{{item.img}}" alt="random blog post" class="random-blog-img">
+                    <a href="/html?id={{item.id}}" title="random blog post" class="random-blog-title">{{item.title}}</a>
 
-                    <div class="random-blog-descr">(($i->summary))</div>
+                    <div class="random-blog-descr">{{item.summary}}</div>
                     <div class="random-blog-item-bg background-color"></div>
                 </div>
-                @endforeach
             </div>
 
             <div class="clear"></div>
@@ -135,10 +121,8 @@
 
         <div class="title tag-cloud">Tag Cloud</div>
 
-        <div class="tag-list margin-tb-10">
-            @foreach($tags as $i)
-            <a href="/blog.html?tag=(($i->id))" title="(($i->name))" >(($i->name))</a>
-            @endforeach
+        <div class="tag-list margin-tb-10" *ngFor="let item of tags">
+            <a href="/html?tag={{item.name}}" title="{{item.name}}" >{{item.name}}</a>
         </div>
 
     </div>

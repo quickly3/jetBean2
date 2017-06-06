@@ -54,7 +54,7 @@ class BlogController extends Controller{
 
         $res = compact("blogInfo","blogList","categories","tags","popular","recent","blogCnt","curr_cate","curr_tag");
         // dump($categories->get(0)->id);die();
-        return View("home.blog.index",$res);
+        return json_encode($res);
     }
 
 

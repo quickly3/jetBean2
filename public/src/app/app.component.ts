@@ -1,6 +1,4 @@
 import { 
-	OnInit,
-	AfterViewChecked,
 	Component,
 	AfterViewInit 
 } from '@angular/core';
@@ -16,20 +14,12 @@ import { AppMenu } from './layouts/app-menu.component';
 	styleUrls:['./app.component.scss']
 })
 
-export class App implements OnInit, AfterViewChecked, AfterViewInit{
+export class App implements AfterViewInit{
 
-	ngOnInit() {
-	
-	}
-	
 	ngAfterViewInit() {
 		this.buildRightSide();
 		let foo = this.buildRightSide;
 		$(window).resize(foo);
-	}
-
-	ngAfterViewChecked(){
-		
 	}
 
 	buildRightSide(){
