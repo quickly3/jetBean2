@@ -22,10 +22,10 @@ export class BlogService {
                     .catch(this.handleError);
 	}
 
-
-	  httpGet(url:any, params:any) {
-	    return this.http.get(url, {search: params}).map(result=>result.json());
-	  }
+	getBlog(params:any) {
+		let url = "http://127.0.0.1/Home/Blog/index"
+		return this.http.get(url, {search: params}).map(result=>result.json());
+	}
 
   private extractData(res: Response) {
     let body = res.json();

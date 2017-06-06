@@ -8,6 +8,7 @@ import * as $ from 'jquery';
 import { AppMenu } from './layouts/app-menu.component';
 
 
+
 @Component({
 	selector:"app",
 	templateUrl:'./app.component.html',

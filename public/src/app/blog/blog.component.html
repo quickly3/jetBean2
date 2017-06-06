@@ -20,31 +20,18 @@
 <div class="row"  >
 
     <div class="main-content three columns blog-list">
-        <div class="random-blog-item blog-list-item" *ngFor="let item of blogList?.data">
+        <div class="random-blog-item blog-list-item" *ngFor="let item of blogList?.data"  (click)="toPage(item.id)">
             <img src="{{item.img}}" alt="random blog post" class="random-blog-img">
-            <a *ngIf="curr_cate" href="/html?id={{item.id}}&cate={{curr_cate.id}}" title="random blog post" class="random-blog-title">{{item.title}}</a>
-            <a *ngIf="curr_tag" href="/html?id={{item.id}}&tag={{curr_tag.id}}" title="random blog post" class="random-blog-title">{{item.title}}</a>
-            <a *ngIf="!curr_tag && !curr_tag" href="/html?id={{item.id}}" title="random blog post" class="random-blog-title">{{item.title}}</a>
 
+            <a title="random blog post" class="random-blog-title">{{item.title}}</a>
             <div class="random-blog-descr">{{item.summary}}</div>
             <div class="random-blog-item-bg background-color"></div>
         </div>
 
-
-        <div class="blog-paging" data-curr="(($blogList->currentPage()))"
-                                 data-total="(($blogList->total()))"
-                                 data-perPage="(($blogList->perPage ()))">
-
-            <a class="background-color" href="#">First</a>
-            <a class="background-color" href="#">...</a>
-
-            <a class="background-color" href="#">6</a>
-            <a class="background-color" href="#">7</a>
-            <a class="background-color" href="#">8</a>
-
-            <a class="background-color" href="#">...</a>
-            <a class="background-color" href="#">Last</a>
-        </div>
+        <ex-page 
+            [currPage]="page.currPage"
+            [totalPage]="page.totalPage"
+        ></ex-page>
 
     </div>
 

@@ -9,9 +9,10 @@ export const routes: Routes = [
   {
     path: 'blog',
     component: Blog,
-    children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-    ]
+  },
+    {
+    path: 'blog/:id',
+    component: Blog,
   }  
 ];
 

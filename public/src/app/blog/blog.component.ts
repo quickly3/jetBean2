@@ -2,12 +2,13 @@ import {
 	Component
 } from '@angular/core';
 
-import { Routes } from '@angular/router';
+import { Routes,Router,ActivatedRoute, Params } from '@angular/router';
+
 import { BlogService } from '../services/blog.service';
 
 import * as $ from 'jquery';
 
-
+import { ExPage } from "../common/pagination.component";
 
 @Component({
 	selector:"blog",
@@ -25,18 +26,44 @@ export class Blog {
 	popular:any
 	recent:any
 	tags:any
+	id:any
+	page:any
 
 	_nav_width = 0;
 
-	constructor (private blogService: BlogService) {
+	constructor (
+		private blogService: BlogService,  
+		private route: ActivatedRoute,
+		private router: Router,
+		) {
+		this.id = route.snapshot.params.id;
+		this.page = {
+			currPage:0,
+			totalPage:0,
+			items:0,
+			rows:10
+		}
 	}
 
-	ngOnInit(){
-		this.blogService.httpGet("http://127.0.0.1/Home/Blog/index",{}).subscribe(res=> {
+	toPage(blogId:any){
+		this.id = blogId;
+		this.router.navigate(['/blog/'+blogId]);
+		this.getBlogInfo();
+	}
+
+	getBlogInfo(){
+		this.blogService.getBlog({id:this.id}).subscribe(res=> {
 			for(let i in res){
 				this[i] = res[i];
 			}
+			this.page.items = res.blogCnt;
+			this.page.currPage = 1;
+			this.page.totalPage = Math.ceil(this.page.items / this.page.rows);
         });
+	}
+
+	ngOnInit(){
+		this.getBlogInfo();
 	}
 
 	ngAfterViewInit(){
